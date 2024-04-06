@@ -10,7 +10,7 @@ from sklearn.tree import DecisionTreeClassifier
 
 from tsfresh import select_features
 
-feature_set = 'Comprehensive' #'Minimal
+feature_set = 'Minimal' #'Minimal
 
 features_2018 = joblib.load('./'+feature_set+'_2018.pkl')
 features_2020 = joblib.load('./'+feature_set+'_2020.pkl')
