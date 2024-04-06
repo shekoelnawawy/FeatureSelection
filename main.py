@@ -20,10 +20,13 @@ features = pd.concat([features_2018, features_2020], ignore_index=True)
 standardize = False
 
 features.dropna(axis=1, inplace=True)
-y = pd.Series(['High', 'High', 'High', 'High', 'High', 'Low', 'High', 'Low', 'Low', 'High', 'High', 'High'])
+# y = pd.Series(['High', 'High', 'High', 'High', 'High', 'Low', 'High', 'Low', 'Low', 'High', 'High', 'High'])
+y = pd.Series([1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1])
+features_selected = select_features(features, y)
+print(features_selected)
 
-X_full_train, X_full_test, y_train, y_test = train_test_split(features, y, test_size=.4)
-
-classifier_full = DecisionTreeClassifier()
-classifier_full.fit(X_full_train, y_train)
-print(classification_report(y_test, classifier_full.predict(X_full_test)))
+# X_full_train, X_full_test, y_train, y_test = train_test_split(features, y, test_size=.4)
+#
+# classifier_full = DecisionTreeClassifier()
+# classifier_full.fit(X_full_train, y_train)
+# print(classification_report(y_test, classifier_full.predict(X_full_test)))
