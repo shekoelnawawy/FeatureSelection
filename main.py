@@ -27,7 +27,7 @@ y = pd.Series(['High', 'High', 'High', 'High', 'High', 'Low', 'High', 'Low', 'Lo
 # features_selected = select_features(features, y)
 # print(features_selected)
 
-X_full_train, X_full_test, y_train, y_test = train_test_split(features, y, test_size=.2)
+X_full_train, X_full_test, y_train, y_test = train_test_split(features, y, test_size=.4)
 
 classifier_full = DecisionTreeClassifier()
 classifier_full.fit(X_full_train, y_train)
