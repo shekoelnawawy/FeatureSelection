@@ -3,7 +3,10 @@ import joblib
 import numpy as np
 from sklearn import tree
 import matplotlib.pyplot as plt
+from sklearn.metrics import classification_report
+from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
+from sklearn.tree import DecisionTreeClassifier
 
 from tsfresh import select_features
 
@@ -12,15 +15,15 @@ feature_set = 'Comprehensive' #'Minimal
 features_2018 = joblib.load('./'+feature_set+'_2018.pkl')
 features_2020 = joblib.load('./'+feature_set+'_2020.pkl')
 
-df = pd.concat([features_2018, features_2020], ignore_index=True)
+features = pd.concat([features_2018, features_2020], ignore_index=True)
 
 standardize = False
-features = df # joblib.load('/Users/nawawy/Desktop/feature_engineering.pkl')
-features.dropna(axis=1, inplace=True)
-print(type(features))
-y = pd.Series(['High', 'High', 'High', 'High', 'High', 'Low', 'High', 'Low', 'Low', 'High', 'High', 'High'])
-y = pd.Series(['High', 'High', 'High', 'High', 'High', 'Low', 'High', 'Low', 'Low', 'High', 'High', 'High'])
-print(type(y))
-features_filtered = select_features(features, y)
 
-print(features_filtered)
+features.dropna(axis=1, inplace=True)
+y = pd.Series(['High', 'High', 'High', 'High', 'High', 'Low', 'High', 'Low', 'Low', 'High', 'High', 'High'])
+
+X_full_train, X_full_test, y_train, y_test = train_test_split(features, y, test_size=.4)
+
+classifier_full = DecisionTreeClassifier()
+classifier_full.fit(X_full_train, y_train)
+print(classification_report(y_test, classifier_full.predict(X_full_test)))
