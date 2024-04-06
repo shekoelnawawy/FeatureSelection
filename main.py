@@ -7,8 +7,10 @@ from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.tree import DecisionTreeClassifier
-
+from imblearn.over_sampling import SMOTE
 from tsfresh import select_features
+from collections import Counter
+
 
 feature_set = 'Comprehensive' #'Minimal
 
@@ -26,9 +28,20 @@ y = pd.Series(['High', 'High', 'High', 'High', 'High', 'Low', 'High', 'Low', 'Lo
 # y = pd.Series([1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0])
 # features_selected = select_features(features, y)
 # print(features_selected)
+# transform the dataset
+# counter = Counter(y)
+# print(counter)
+oversample = SMOTE(k_neighbors=2)
+features, y = oversample.fit_resample(features, y)
+# counter = Counter(y)
+# print(counter)
 
-X_full_train, X_full_test, y_train, y_test = train_test_split(features, y, test_size=.4)
+features_selected = select_features(features, y)
+print(features_selected)
 
-classifier_full = DecisionTreeClassifier()
-classifier_full.fit(X_full_train, y_train)
-print(classification_report(y_test, classifier_full.predict(X_full_test)))
+
+# X_full_train, X_full_test, y_train, y_test = train_test_split(features, y, test_size=.4)
+#
+# classifier_full = DecisionTreeClassifier()
+# classifier_full.fit(X_full_train, y_train)
+# print(classification_report(y_test, classifier_full.predict(X_full_test)))
