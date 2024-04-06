@@ -17,9 +17,9 @@ df = pd.concat([features_2018, features_2020], ignore_index=True)
 standardize = False
 features = df # joblib.load('/Users/nawawy/Desktop/feature_engineering.pkl')
 features.dropna(axis=1, inplace=True)
-# print(features)
+print(features)
 y = pd.Series(['High', 'High', 'High', 'High', 'High', 'Low', 'High', 'Low', 'Low', 'High', 'High', 'High'])
-# print(y)
+print(y)
 features_filtered = select_features(features, y)
 
 print(features_filtered)
