@@ -9,8 +9,8 @@ from tsfresh import select_features
 
 feature_set = 'Comprehensive' #'Minimal
 
-features_2018 = joblib.load('/Users/nawawy/Desktop/'+feature_set+'_2018.pkl')
-features_2020 = joblib.load('/Users/nawawy/Desktop/'+feature_set+'_2020.pkl')
+features_2018 = joblib.load('./'+feature_set+'_2018.pkl')
+features_2020 = joblib.load('./'+feature_set+'_2020.pkl')
 
 df = pd.concat([features_2018, features_2020], ignore_index=True)
 
