@@ -31,6 +31,7 @@ features, y = oversample.fit_resample(features, y)
 
 
 relevance_table = calculate_relevance_table(features, y)
+print(relevance_table)
 relevance_table = relevance_table[relevance_table.relevant]
 relevance_table.sort_values("p_value", inplace=True)
 print(relevance_table["feature"][:11])
