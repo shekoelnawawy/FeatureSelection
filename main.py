@@ -34,6 +34,7 @@ relevance_table = calculate_relevance_table(features, y)
 relevance_table = relevance_table[relevance_table["p_value"].notna()]
 relevance_table.sort_values("p_value", inplace=True, ascending=False)
 print(relevance_table)
+relevance_table.to_csv('./relevance.csv')
 # relevance_table = relevance_table[relevance_table.relevant]
 # relevance_table.sort_values("p_value", inplace=True)
 # print(relevance_table["feature"][:11])
