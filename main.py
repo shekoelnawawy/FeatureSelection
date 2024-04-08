@@ -30,7 +30,7 @@ oversample = SMOTE(k_neighbors=2)
 features, y = oversample.fit_resample(features, y)
 
 
-relevance_table = calculate_relevance_table(features, y)
+relevance_table = calculate_relevance_table(features, y, fdr_level=5)
 relevance_table = relevance_table[relevance_table["p_value"].notna()]
 relevance_table.sort_values("p_value", inplace=True, ascending=False)
 print(relevance_table)
