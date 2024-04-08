@@ -13,7 +13,7 @@ from collections import Counter
 from tsfresh.feature_selection.relevance import calculate_relevance_table
 
 
-feature_set = 'Comprehensive' #'Minimal
+feature_set = 'Minimal' #'Minimal
 
 features_2018 = joblib.load('./'+feature_set+'_2018.pkl')
 features_2020 = joblib.load('./'+feature_set+'_2020.pkl')
@@ -30,9 +30,9 @@ oversample = SMOTE(k_neighbors=2)
 features, y = oversample.fit_resample(features, y)
 
 
-relevance_table = calculate_relevance_table(features, y, fdr_level=5)
+relevance_table = calculate_relevance_table(features, y) #, fdr_level=5)
 relevance_table = relevance_table[relevance_table["p_value"].notna()]
-relevance_table.sort_values("p_value", inplace=True, ascending=False)
+relevance_table.sort_values("p_value", inplace=True)
 print(relevance_table)
 relevance_table.to_csv('./relevance.csv')
 # relevance_table = relevance_table[relevance_table.relevant]
