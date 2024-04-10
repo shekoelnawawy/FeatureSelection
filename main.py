@@ -10,7 +10,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split
 
-feature_set = 'Comprehensive ' #'Minimal
+feature_set = 'Minimal' #'Minimal
 standardize = False
 
 features_2018 = joblib.load('./'+feature_set+'_2018.pkl')
@@ -38,17 +38,17 @@ relevance_table.to_csv('./relevance.csv')
 # classifier_full.fit(X_full_train, y_train)
 # print(classification_report(y_test, classifier_full.predict(X_full_test)))
 
-column_names = features.columns
-if standardize:
-    data = StandardScaler().fit_transform(features)
-else:
-    data = np.array(features)
-
-
-seeds = [1, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 1000, 2000, 3000, 4000, 5000, 10000, 20000, 30000, 40000, 50000]
-for seed in seeds:
-    clf = tree.DecisionTreeClassifier(random_state=seed)
-    clf = clf.fit(data, y)
-    tree.plot_tree(clf, feature_names=column_names[:-1], filled=True, class_names=['High', 'Low'], rounded = True)
-    # plt.show()
-    plt.savefig('./Trees/tree_'+str(seed), dpi=300)
+# column_names = features.columns
+# if standardize:
+#     data = StandardScaler().fit_transform(features)
+# else:
+#     data = np.array(features)
+#
+#
+# seeds = [1, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 1000, 2000, 3000, 4000, 5000, 10000, 20000, 30000, 40000, 50000]
+# for seed in seeds:
+#     clf = tree.DecisionTreeClassifier(random_state=seed)
+#     clf = clf.fit(data, y)
+#     tree.plot_tree(clf, feature_names=column_names[:-1], filled=True, class_names=['High', 'Low'], rounded = True)
+#     # plt.show()
+#     plt.savefig('./Trees/tree_'+str(seed), dpi=300)
